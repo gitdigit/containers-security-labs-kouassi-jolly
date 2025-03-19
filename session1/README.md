@@ -22,37 +22,44 @@ Look at the logs and understand the steps
 
 ![dockerhelloworld](../session1/images/dockerhelloworld.png)
 
-#### 3.2. Explore a container in interactif mode
+The container outputs a message indicating that Docker is successfully installed and that the Docker engine can run containers as expected.
 
+#### 3.2. Explore a container in interactive mode
+
+We started an Alpine Linux container in interactive mode to explore its internal environment. 
 ```bash 
 docker run -it --rm alpine sh
 ```
+Inside the container, we executed basic linux commands such as `ls`, `pwd` to navigate and inspect the container's filesystem. 
 ![dockeralpine](../session1/images/dockeralpine.png)
+
 
 Test the linux commands
 
 #### 3.3. Analyse the systems resources of a container
-
+To monitor the system resource consumption of a running container, we deployed an Nginx container in detached mode and used the `docker stats`command. 
 ```bash
 docker run -d --name test-container nginx
 docker stats test-container
 ```
 ![testcontainer](../session1/images/testcontainer.png)
 ![statstestcontainer](../session1/images/stats.png)
-Observe the CPU and memory consumption. 
+
+We observed low memory usage and minimal CPU consumption by the container, demonstrating the efficiency of lightweight containers like Nginx. 
 
 #### 3.4. List the permissions of a container
-
+We tested how to assign additional Linux capabilities to a container using the `--cap-add`option. Specifically, we added the `SYS_ADMIN`capability. 
 ```
 docker run --rm --cap-add=SYS_ADMIN alpine sh -c 'cat /proc/self/status'
 ```
 ![permissions](../session1/images/permissions.png)
 
-### 4. Practical activities - Threats and Vulnerabilities
+We can see that all the files of the root user are listed, which introduces security risks.
 
 ### 4. Practical activities - Threats and Vulnerabilities
 
 #### 4.1. Testing a container with high priviledges
+We ran a container in `--privileged` mode to understand the security risks associated with elevated permissions.
 
 ```bash 
 docker run --rm --privileged alpine sh -c 'echo hello from privileged mode'
