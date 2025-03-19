@@ -37,6 +37,8 @@ Test the linux commands
 docker run -d --name test-container nginx
 docker stats test-container
 ```
+![testcontainer](../session1/images/testcontainer.png)
+![statstestcontainer](../session1/images/stats.png)
 Observe the CPU and memory consumption. 
 
 #### 3.4. List the permissions of a container
@@ -44,6 +46,7 @@ Observe the CPU and memory consumption.
 ```
 docker run --rm --cap-add=SYS_ADMIN alpine sh -c 'cat /proc/self/status'
 ```
+![permissions](../session1/images/permissions.png)
 
 ### 4. Practical activities - Threats and Vulnerabilities
 
