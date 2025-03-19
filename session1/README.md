@@ -45,6 +45,58 @@ Observe the CPU and memory consumption.
 docker run --rm --cap-add=SYS_ADMIN alpine sh -c 'cat /proc/self/status'
 ```
 
+### 4. Practical activities - Threats and Vulnerabilities
+
+#### 4.1. Testing a container with high priviledges
+
+```bash 
+docker run --rm --privileged alpine sh -c 'echo hello from privileged mode'
+```
+
+#### 4.2. Simulation
+
+```bash 
+docker run --rm -v /:/mnt alpine sh -c 'ls /mnt'
+```
+
+#### 4.3. Create an image
+
+```bash 
+FROM alpine
+RUN adduser -D appuser
+USER appuser
+CMD ["echo", "Container sécurisé!"]
+```
+
+#### 4.4. Restrict network access
+
+#### 4.5. Block internet connection
+```bash
+docker network disconnect bridge mon-container
+```
+
+#### 4.6. Test internet connection
+
+```bash 
+ping google.com 
+```
+
+#### 4.7. Download and scan an image 
+```bash
+docker pull vulnerables/web-dvwa
+trivy image vulnerables/web-dvwa
+```
+
+#### 4.8. Scan an image to detect the vulnerabilities
+
+```bash
+grype alpine:latest
+```
+
+
+
+
+
 
 
 
