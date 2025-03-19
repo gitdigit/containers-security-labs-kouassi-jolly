@@ -71,6 +71,7 @@ FROM alpine
 RUN adduser -D appuser
 USER appuser
 CMD ["echo", "Container sécurisé!"]
+```
 ![createimage](../session1/images/createimage.png)
 ![idimage](../session1/images/containerid.png)
 
@@ -81,12 +82,15 @@ CMD ["echo", "Container sécurisé!"]
 docker network disconnect bridge mon-container
 ```
 
+
 #### 4.6. Test internet connection
 
 ```bash 
 ping google.com 
 ```
+![imagej](image.png)
 ![networkbridge](../session1/images/networkbridge.png)
+
 #### 4.7. Download and scan an image 
 ```bash
 docker pull vulnerables/web-dvwa
