@@ -71,7 +71,6 @@ FROM alpine
 RUN adduser -D appuser
 USER appuser
 CMD ["echo", "Container sécurisé!"]
-```
 ![createimage](../session1/images/createimage.png)
 ![idimage](../session1/images/containerid.png)
 
@@ -87,18 +86,25 @@ docker network disconnect bridge mon-container
 ```bash 
 ping google.com 
 ```
-
+![networkbridge](../session1/images/networkbridge.png)
 #### 4.7. Download and scan an image 
 ```bash
 docker pull vulnerables/web-dvwa
 trivy image vulnerables/web-dvwa
 ```
+![trivyweb](../session1/images/trivy.png)
+```bash
+trivy image --format json --output resultat-trivy.json vulnerables/web-dvwa
+```
+![trivyjson](../session1/images/jsonimage.png)
 
 #### 4.8. Scan an image to detect the vulnerabilities
 
 ```bash
 grype alpine:latest
 ```
+
+![grypescan](../session1/images/grypealpine.png)
 
 
 
