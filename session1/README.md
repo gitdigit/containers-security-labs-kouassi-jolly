@@ -55,12 +55,14 @@ docker run --rm --cap-add=SYS_ADMIN alpine sh -c 'cat /proc/self/status'
 ```bash 
 docker run --rm --privileged alpine sh -c 'echo hello from privileged mode'
 ```
+![hellopriv](../session1/images/hellopriv.png)
 
 #### 4.2. Simulation
 
 ```bash 
 docker run --rm -v /:/mnt alpine sh -c 'ls /mnt'
 ```
+![priviledgedtest](../session1/images/priviledgedtest.png)
 
 #### 4.3. Create an image
 
@@ -70,6 +72,8 @@ RUN adduser -D appuser
 USER appuser
 CMD ["echo", "Container sécurisé!"]
 ```
+![createimage](../session1/images/createimage.png)
+![idimage](../session1/images/containerid.png)
 
 #### 4.4. Restrict network access
 
