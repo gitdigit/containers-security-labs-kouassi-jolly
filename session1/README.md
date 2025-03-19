@@ -50,6 +50,8 @@ docker run --rm --cap-add=SYS_ADMIN alpine sh -c 'cat /proc/self/status'
 
 ### 4. Practical activities - Threats and Vulnerabilities
 
+### 4. Practical activities - Threats and Vulnerabilities
+
 #### 4.1. Testing a container with high priviledges
 
 ```bash 
@@ -57,12 +59,16 @@ docker run --rm --privileged alpine sh -c 'echo hello from privileged mode'
 ```
 ![hellopriv](../session1/images/hellopriv.png)
 
+Lancer un container en mode priviligié est dangereux car ça donne un accés complet au système d'exploitation de l'hôte. Une personne peut depuis le container modifier les paramètres du systèmes ou accéder à des données privés. On peut aussi créer un nouvel utilisateur avec des autorisations élevé et cela facilite les évasions de container en établissant une connexion avec l'extérieur.
+
 #### 4.2. Simulation
 
 ```bash 
 docker run --rm -v /:/mnt alpine sh -c 'ls /mnt'
 ```
 ![priviledgedtest](../session1/images/priviledgedtest.png)
+
+Cette faille de configuration montre que toutes personne ayant accés au container peut lire n'importe quel fichier sur l'hôte dont les fichiers de configurations ou des mots de passe.
 
 #### 4.3. Create an image
 
@@ -88,8 +94,10 @@ docker network disconnect bridge mon-container
 ```bash 
 ping google.com 
 ```
-![imagej](image.png)
+![imagej](./images/testPing.png)
 ![networkbridge](../session1/images/networkbridge.png)
+
+On pouvait ping google lors de la création du container mais une fois l'accés au réseau restreint le ping ne marche plus ce aaui montre que l'accés à Internet à bien été bloquer.
 
 #### 4.7. Download and scan an image 
 ```bash
@@ -109,12 +117,3 @@ grype alpine:latest
 ```
 
 ![grypescan](../session1/images/grypealpine.png)
-
-
-
-
-
-
-
-
-
